@@ -13,25 +13,33 @@
 				<ol class="carousel-indicators">
 					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+
 				</ol>
 
 				<div class="carousel-inner">
 
-					<div class="carousel-item active">
+									<!-- <div class="carousel-item active">
 						<img class="d-block w-100" src="https://designrevision.com/docs/shards/images/1.jpg" alt="First slide">
 						<div class="carousel-caption d-none d-md-block">
 							<h5 class="text-white">Caption Title</h5>
 							<p>Caption Subtitle</p>
 						</div>
-					</div>
+					</div>	 -->
 
-					<div class="carousel-item">
-						<img class="d-block w-100" src="https://designrevision.com/docs/shards/images/2.jpg" alt="Second slide">
+					@foreach ($topview as $key => $tv)
+						<div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+						<img class="d-block w-100" height="365px" src="/uploads/articles/{{$tv->image}}" alt="First slide">
 						<div class="carousel-caption d-none d-md-block">
-							<h5 class="text-white">Caption Title</h5>
-							<p>Caption Subtitle</p>
+						<a href="/{{$tv->slug}}">
+							<h5 class="text-white">{{$tv->title}}</h5>
+						</a>
 						</div>
 					</div>
+					@endforeach
+
 
 				</div>
 
@@ -86,15 +94,15 @@
 
 			<div class="card-body row justify-content-center">
 
-				@foreach ($data as $data)
-					@if($data->category->name == 'Umum')
+				@foreach ($data as $dt)
+					@if($dt->category->name == 'Umum')
 						<div class="col-lg-4 mb-5">
 							<div class="card" style="">
-								<img class="card-img-top" src="/uploads/articles/{{ $data->image }}" alt="Card image cap">
+								<img height="200px" class="card-img-top" src="/uploads/articles/{{ $dt->image }}" alt="Card image cap">
 								<div class="card-body">
-									<h4 class="card-title">{{ $data->title }}</h4>
-									<p class="card-text">{!! \Illuminate\Support\Str::words($data->body, 20, '....') !!}</p>
-									<a href="/{{ $data->slug }}" class="btn btn-primary">Baca selengkapnya &rarr;</a>
+									<h4 class="card-title">{{ $dt->title }}</h4>
+									<p class="card-text">{!! \Illuminate\Support\Str::words($dt->body, 20, '....') !!}</p>
+									<a href="/{{ $dt->slug }}" class="btn btn-primary">Baca selengkapnya &rarr;</a>
 								</div>
 							</div>
 						</div>
@@ -115,18 +123,20 @@
 
 			<div class="card-body row justify-content-center">
 
-					@if($data->category->name == 'Internasional')
+				@foreach ($data as $dt)
+					@if($dt->category->name == 'Internasional')
 						<div class="col-lg-4 mb-5">
 							<div class="card" style="">
-								<img class="card-img-top" src="/uploads/articles/{{ $data->image }}" alt="Card image cap">
+								<img height="200px" class="card-img-top" src="/uploads/articles/{{ $dt->image }}" alt="Card image cap">
 								<div class="card-body">
-									<h4 class="card-title">{{ $data->title }}</h4>
-									<p class="card-text">{!! \Illuminate\Support\Str::words($data->body, 20, '....') !!}</p>
-									<a href="/{{ $data->slug }}" class="btn btn-primary">Baca selengkapnya &rarr;</a>
+									<h4 class="card-title">{{ $dt->title }}</h4>
+									<p class="card-text">{!! \Illuminate\Support\Str::words($dt->body, 20, '....') !!}</p>
+									<a href="/{{ $dt->slug }}" class="btn btn-primary">Baca selengkapnya &rarr;</a>
 								</div>
 							</div>
 						</div>
 					@endif
+				@endforeach
 
 			</div>
 		</div>

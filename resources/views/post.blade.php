@@ -11,8 +11,7 @@
 				<img class="card-img-top" src="/uploads/articles/{{ $data->image }}" alt="Card image cap">
 				<div class="card-body p-5">
 					<h4 class="card-title">{{ $data->title }}</h4>
-					<div class="mb-5" style="font-size: 14px; margin-top: -10px;">{{ $data->created_at }}</div>
-					{{ $data->image }}
+					<div class="mb-5" style="font-size: 14px; margin-top: -10px;">{{ $data->created_at }}, oleh <b>{{$data->author->name}}</b></div>
 					<p class="card-text">{!! $data->body !!}</p>
 					
 				</div>
