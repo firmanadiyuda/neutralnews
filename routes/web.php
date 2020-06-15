@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +43,4 @@ Route::post('/panel/category', 'Authors\CategoryController@store')->name('catego
 Route::get('/panel/category/{id}/edit', 'Authors\CategoryController@edit')->name('category.edit');
 Route::delete('/panel/category/{id}', 'Authors\CategoryController@destroy')->name('category.delete');
 
-Route::get('/{slug}', 'Authors\PostController@show')->name('post.show');
+Route::get('/{slug}', 'PostController@show');
