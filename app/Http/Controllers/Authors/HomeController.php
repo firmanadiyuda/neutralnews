@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Authors;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Post;
+use App\User;
+use App\Category;
+
 
 class HomeController extends Controller
 {
@@ -24,6 +28,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('Authors.dashboard');
+        $totalpostapproved = Post::where('active',1)->count();
+        $totalpostnotapproved = Post::where('active',0)->count();
+        $totaluser = User::count();
+        $totalcategory = Category::count();
+
+        return view('Authors.dashboard')->with([
+            'totalpostapproved'=> $totalpostapproved,
+            'totalpostnotapproved' => $totalpostnotapproved,
+            'totaluser' => $totaluser,
+            'totalcategory' => $totalcategory
+            ]);
     }
 }
